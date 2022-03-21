@@ -9,7 +9,6 @@ volume_info = ec2.describe_volumes(
 volume_id = volume_info["Volumes"][0]["VolumeId"]
 try:
     resize = ec2.modify_volume(VolumeId=volume_id, Size=100)
-    print(resize)
 except ClientError as e:
     if e.response["Error"]["Code"] == "InvalidParameterValue":
         print("ERROR MESSAGE: {}".format(e))
